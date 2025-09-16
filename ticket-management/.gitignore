@@ -1,0 +1,38 @@
+# Dependency directories
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# Build artifacts
+build/
+dist/
+
+# Logs and diagnostics
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Runtime data
+pids/
+*.pid
+*.seed
+
+# Coverage and test artifacts
+coverage/
+.jest/
+
+# Environment files
+.env
+.env.*
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Deployment
+.vercel/
