@@ -2,10 +2,25 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { supabase } from "@/lib/supabase/client"
 import { ChevronDown, Ticket, BarChart2, Settings } from 'lucide-react' // Import new icons
 
 export default function Header() {
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    setIsProfileDropdownOpen(false)
+    const { error } = await supabase.auth.signOut()
+
+    if (error) {
+      console.error("Error al cerrar sesión", error)
+      return
+    }
+
+    router.push("/")
+  }
 
   return (
     <header
@@ -97,12 +112,22 @@ export default function Header() {
               </Link>
             </div>
             <div className="dropdown-item">
-              <Link
-                href="/logout"
-                style={{ display: "block", width: "100%", textDecoration: "none", color: "inherit" }}
+              <button
+                type="button"
+                onClick={handleLogout}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  textAlign: "left",
+                  cursor: "pointer",
+                  color: "inherit",
+                }}
               >
                 Cerrar Sesión
-              </Link>
+              </button>
             </div>
           </div>
         )}
